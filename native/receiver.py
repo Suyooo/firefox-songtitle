@@ -60,13 +60,13 @@ def handle(config):
 			)
 
 		text_file_path = os.path.join(os.path.dirname(sys.argv[0]), "nowplaying.txt")
-		with open(text_file_path + ".tmp", "w") as outfile:
+		with open(text_file_path + ".tmp", "w", encoding="utf-8") as outfile:
 			outfile.write(raw_formatted)
 		os.replace(text_file_path + ".tmp", text_file_path)
 
 		html_file_path = os.path.join(os.path.dirname(sys.argv[0]), "nowplaying.html")
-		with importlib.resources.open_text(__name__, "nowplaying-template.html") as templfile:
-			with open(html_file_path + ".tmp", "w") as outfile:
+		with importlib.resources.open_text(__name__, "nowplaying-template.html", encoding="utf-8") as templfile:
+			with open(html_file_path + ".tmp", "w", encoding="utf-8") as outfile:
 				outfile.write(templfile.read().replace("$FORMAT$", html_formatted).replace("$CSS$", config["css"]))
 		os.replace(html_file_path + ".tmp", html_file_path)
 		
