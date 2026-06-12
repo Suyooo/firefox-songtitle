@@ -73,6 +73,6 @@ def handle(config):
 		send("1")
 	except Exception as e:
 		msg = str(e)
-		with open(os.path.join(os.path.dirname(sys.argv[0]), "error.txt"), "w") as outfile:
+		with open(os.path.join(os.path.dirname(sys.argv[0]), "error.txt"), "w", encoding="utf-8") as outfile:
 			outfile.write(msg)
 		send(msg)

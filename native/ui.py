@@ -106,14 +106,14 @@ def click_install():
 			if script_path.endswith(".exe"):
 				newjson["path"] = script_path
 			else:
-				with open(script_path + ".bat", "w") as batchfile:
+				with open(script_path + ".bat", "w", encoding="utf-8") as batchfile:
 					batchfile.write("@echo off\n")
 					batchfile.write(sys.executable)
 					batchfile.write(" ")
 					batchfile.write(script_path)
 					batchfile.write(" %0")
 				newjson["path"] = script_path + ".bat"
-			with open(os.path.join(os.path.dirname(sys.argv[0]), "firefox_connection.json"), "w") as jsonfile:
+			with open(os.path.join(os.path.dirname(sys.argv[0]), "firefox_connection.json"), "w", encoding="utf-8") as jsonfile:
 				json.dump(newjson, jsonfile, indent="\t")
 			
 			import winreg
@@ -130,7 +130,7 @@ def click_install():
 			newjson["path"] = os.path.realpath(sys.argv[0])
 			with open(os.path.join(
 					pathlib.Path.home(), ".mozilla", "native-messaging-hosts", "be.suyo.firefox_nowplaying.json"
-				), "w") as jsonfile:
+				), "w", encoding="utf-8") as jsonfile:
 				json.dump(newjson, jsonfile, indent="\t")
 		tk.messagebox.showinfo(title="Now Playing Config", message="Now Playing has been connected to Firefox!")
 	except Exception as e:
@@ -159,7 +159,7 @@ def click_uninstall():
 
 def click_save():
 	try:
-		with open(os.path.join(os.path.dirname(sys.argv[0]), "settings.json"), "w") as configfile:
+		with open(os.path.join(os.path.dirname(sys.argv[0]), "settings.json"), "w", encoding="utf-8") as configfile:
 			json.dump({
 				"format": var_format.get(),
 				"css": txt_css.get("1.0", "end"),

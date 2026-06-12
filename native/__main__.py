@@ -13,7 +13,7 @@ def run():
 		"css": "#nowplaying {\n\tfont-family: sans-serif;\n}",
 	}
 	if os.path.isfile(os.path.join(os.path.dirname(sys.argv[0]), "settings.json")):
-		with open(os.path.join(os.path.dirname(sys.argv[0]), "settings.json"), "r") as configfile:
+		with open(os.path.join(os.path.dirname(sys.argv[0]), "settings.json"), "r", encoding="utf-8") as configfile:
 			try:
 				config = config | json.load(configfile)
 			except Exception:
